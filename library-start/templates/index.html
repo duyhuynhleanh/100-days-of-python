@@ -1,0 +1,27 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Day 63 - Library
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+      <h1>Library Home</h1>
+                {% if all_books == []: %}
+        <p>Library is empty.</p>
+        {% endif %}
+      <ul>
+        	  {% for book in all_books %}
+
+          <li>
+              <a href="{{ url_for('delete', id=book.id) }}">Delete</a>
+              {{book.title}} - {{book.author}} - {{book.rating}}
+              <a href="{{ url_for('edit', id=book.id) }}">Edit Rating</a>
+          </li>
+
+	  {% endfor %}
+      </ul>
+      <a href="{{ url_for('add') }}">Add New Book</a>
+  </div>
+{% endblock %}
